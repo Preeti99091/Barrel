@@ -6,9 +6,9 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Options
-option(BUILD_SAMPLES "Build sample executables" ON)
-option(BUILD_TOOLS   "Build tool executables (builder/dumper)" ON)
-option(BUILD_SHARED_LIBS "Build Barrel as shared library" ON)
+option(BUILD_SAMPLES "Build sample executables" OFF)
+option(BUILD_TOOLS   "Build tool executables (builder/dumper)" OFF)
+option(BUILD_SHARED_LIBS "Build Barrel as shared library" OFF)
 
 # Barrel library
 file(GLOB BARREL_SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
