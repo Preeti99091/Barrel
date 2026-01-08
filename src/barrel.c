@@ -2,7 +2,7 @@
 #include "brlalg.h"
 #include "brlstdlib.h"
 
-void VFS_BuildHeader(
+BRLAPI void VFS_BuildHeader(
     const uint64_t fileCount,
     const uint64_t tableOffset,
     const uint64_t dataOffset,
@@ -15,7 +15,7 @@ void VFS_BuildHeader(
     op_header->dataOffset  = dataOffset;
 }
 
-void VFS_BuildEntry(
+BRLAPI void VFS_BuildEntry(
     const char*          filename,
     const VFSDataBlob*   blobArray,
     const uint64_t       blobOffset,
@@ -27,7 +27,7 @@ void VFS_BuildEntry(
     op_entry->dataChecksum = BRL_Hash64(blobArray->data, blobArray->size);
 }
 
-VFSDataBlob* VFS_BuildDataBlob(
+BRLAPI VFSDataBlob* VFS_BuildDataBlob(
     const uint8_t*  data,
     const uint64_t  dataSize
 ) {
@@ -46,7 +46,7 @@ VFSDataBlob* VFS_BuildDataBlob(
     return blob;
 }
 
-VFSError VFS_CreateContext(
+BRLAPI VFSError VFS_CreateContext(
     const uint8_t* buffer,
     const uint64_t size,
     VFSContext*    op_ctx
@@ -88,7 +88,7 @@ VFSError VFS_CreateContext(
     return BRL_OK;
 }
 
-VFSError VFS_CreateChunkedContext(
+BRLAPI VFSError VFS_CreateChunkedContext(
     const VFSReadCallback readFunc,
     void*                 userData,
     const uint64_t        archiveSize,
@@ -158,7 +158,7 @@ VFSError VFS_CreateChunkedContext(
     return BRL_OK;
 }
 
-BRLIntegrity VFS_CheckIntegrity(
+BRLAPI BRLIntegrity VFS_CheckIntegrity(
     const BRLHeader* header
 ) {
     if (header->sign != BRL_SIGNATURE) {
@@ -177,7 +177,7 @@ BRLIntegrity VFS_CheckIntegrity(
     return BRLI_OK;
 }
 
-bool VFS_CheckEntryIntegrity(
+BRLAPI bool VFS_CheckEntryIntegrity(
     const VFSFileEntry* entry,
     const uint8_t*      data
 ) {
@@ -190,7 +190,7 @@ bool VFS_CheckEntryIntegrity(
     return currChecksum == origChecksum;
 }
 
-void VFS_UnloadContext(
+BRLAPI void VFS_UnloadContext(
     VFSContext* ctx
 ) {
     if (!ctx) return;
@@ -211,7 +211,7 @@ void VFS_UnloadContext(
     ctx->size       = 0;
 }
 
-void VFS_UnloadChunkedContext(
+BRLAPI void VFS_UnloadChunkedContext(
     VFSChunkedContext* ctx
 ) {
     if (!ctx) return;
@@ -230,7 +230,7 @@ void VFS_UnloadChunkedContext(
     }
 }
 
-void VFS_ClearChunkCache(
+BRLAPI void VFS_ClearChunkCache(
     VFSChunkedContext* ctx
 ) {
     if (!ctx) return;

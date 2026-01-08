@@ -8,10 +8,15 @@
 #define BRL_ALG
 
 #include <stdint.h>
+#include "brlextc.h"
 
-uint64_t BRL_Hash64(
+BRL_EXTERN_C_START
+
+BRLAPI uint64_t BRL_Hash64(
     const void* key,
     uint64_t len
 );
+
+BRL_EXTERN_C_END
 
 #endif /* BRL_ALG */

@@ -9,6 +9,7 @@
 #define BRL_DEF
 
 #include <stdint.h>
+#include "brlextc.h"
 
 // -----------------------------------------------------------
 // VFS Signature and Version
@@ -37,6 +38,8 @@
 #ifndef VFS_MAX_CHUNKS
 #define VFS_MAX_CHUNKS                8
 #endif
+
+BRL_EXTERN_C_START
 
 /**
  * @brief Read callback type for chunked VFS reads.
@@ -169,6 +172,8 @@ typedef struct VFSChunkedContext {
 
     VFSDataBlobChunk chunks[VFS_MAX_CHUNKS]; ///< Fixed-size cache of loaded chunks
 } VFSChunkedContext;
+
+BRL_EXTERN_C_END
 
 #ifndef BRL_DISABLE_STRUCT_PACKING
 #pragma pack(pop) // End structs pack

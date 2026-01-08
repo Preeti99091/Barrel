@@ -11,6 +11,9 @@
 
 #include "brlutil.h"
 #include "brlbool.h"
+#include "brlextc.h"
+
+BRL_EXTERN_C_START
 
 /**
  * @enum VFSError
@@ -41,7 +44,7 @@ typedef enum BRLIntegrity {
  * @param dataOffset    Offset (RVA) from the start of the VFS where the data blobs begin
  * @param op_header     Pointer to a pre-allocated BRLHeader structure to populate
  */
-void VFS_BuildHeader(
+BRLAPI void VFS_BuildHeader(
     uint64_t   fileCount,
     uint64_t   tableOffset,
     uint64_t   dataOffset,
@@ -56,7 +59,7 @@ void VFS_BuildHeader(
  * @param blobOffset   Offset (RVA) from the start of the VFS file where this blob will be written
  * @param op_entry     Pointer to a pre-allocated VFSFileEntry to be populated
  */
-void VFS_BuildEntry(
+BRLAPI void VFS_BuildEntry(
     const char*          filename,
     const VFSDataBlob*   blobArray,
     uint64_t             blobOffset,
@@ -70,7 +73,7 @@ void VFS_BuildEntry(
  * @param dataSize      Size of the data in bytes
  * @return              Pointer to a newly allocated VFSDataBlob (must free later)
  */
-VFSDataBlob* VFS_BuildDataBlob(
+BRLAPI VFSDataBlob* VFS_BuildDataBlob(
     const uint8_t*  data,
     uint64_t        dataSize
 );
@@ -82,7 +85,7 @@ VFSDataBlob* VFS_BuildDataBlob(
  * @param size      Size of the VFS data in bytes.
  * @param op_ctx    Output pointer to the initialized context.
  */
-VFSError VFS_CreateContext(
+BRLAPI VFSError VFS_CreateContext(
     const uint8_t* buffer,
     uint64_t       size,
     VFSContext*    op_ctx
@@ -102,7 +105,7 @@ VFSError VFS_CreateContext(
  *
  * @return VFSError    Returns BRL_OK if successful or an error code.
  */
-VFSError VFS_CreateChunkedContext(
+BRLAPI VFSError VFS_CreateChunkedContext(
     VFSReadCallback    readFunc,
     void*              userData,
     uint64_t           archiveSize,
@@ -116,7 +119,7 @@ VFSError VFS_CreateChunkedContext(
  * @param header   Pointer to the VFS header to check.
  * @return         Integrity status code.
  */
-BRLIntegrity VFS_CheckIntegrity(
+BRLAPI BRLIntegrity VFS_CheckIntegrity(
     const BRLHeader* header
 );
 
@@ -127,7 +130,7 @@ BRLIntegrity VFS_CheckIntegrity(
  * @param data     Pointer to the entry's data.
  * @return         true if valid, false otherwise.
  */
-bool VFS_CheckEntryIntegrity(
+BRLAPI bool VFS_CheckEntryIntegrity(
     const VFSFileEntry* entry,
     const uint8_t*      data
 );
@@ -137,7 +140,7 @@ bool VFS_CheckEntryIntegrity(
  *
  * @param ctx  Pointer to the context to free.
  */
-void VFS_UnloadContext(
+BRLAPI void VFS_UnloadContext(
     VFSContext* ctx
 );
 
@@ -146,7 +149,7 @@ void VFS_UnloadContext(
  *
  * @param ctx   Pointer to an initialized VFSChunkedContext.
  */
-void VFS_UnloadChunkedContext(
+BRLAPI void VFS_UnloadChunkedContext(
     VFSChunkedContext* ctx
 );
 
@@ -155,8 +158,10 @@ void VFS_UnloadChunkedContext(
  *
  * @param ctx   Pointer to an initialized VFSChunkedContext.
  */
-void VFS_ClearChunkCache(
+BRLAPI void VFS_ClearChunkCache(
     VFSChunkedContext* ctx
 );
+
+BRL_EXTERN_C_END
 
 #endif /* BRL_BARREL */

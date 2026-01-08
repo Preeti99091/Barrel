@@ -5,20 +5,20 @@
 // global tick counter for LRU, used in chunked data handling
 static uint64_t g_lruTick = 0;
 
-void* VFS_GetDataPtr(
+BRLAPI void* VFS_GetDataPtr(
     const VFSContext*   ctx,
     const VFSFileEntry* entry
 ) {
     return ctx->base + entry->dataRVA;
 }
 
-uint64_t VFS_GetDataSize(
+BRLAPI uint64_t VFS_GetDataSize(
     const VFSFileEntry* entry
 ) {
      return entry->dataSize;
 }
 
-VFSFileEntry* VFS_FindByHash(
+BRLAPI VFSFileEntry* VFS_FindByHash(
     const VFSContext* ctx,
     const uint64_t    hash
 ) {
@@ -43,7 +43,7 @@ VFSFileEntry* VFS_FindByHash(
     return NULL;
 }
 
-VFSFileEntry* VFS_FindByName(
+BRLAPI VFSFileEntry* VFS_FindByName(
     const VFSContext* ctx,
     const char*       name
 ) {
@@ -51,7 +51,7 @@ VFSFileEntry* VFS_FindByName(
     return VFS_FindByHash(ctx, hash);
 }
 
-uint8_t* VFS_GetChunkedDataPtr(
+BRLAPI uint8_t* VFS_GetChunkedDataPtr(
     VFSChunkedContext*  ctx,
     const VFSFileEntry* entry,
     uint64_t*           outSize,
@@ -153,7 +153,7 @@ uint8_t* VFS_GetChunkedDataPtr(
     return selected->blob->data;
 }
 
-uint64_t VFS_GetChunksCount(
+BRLAPI uint64_t VFS_GetChunksCount(
     const uint64_t fileSize,
     const uint64_t chunkSize
 ) {

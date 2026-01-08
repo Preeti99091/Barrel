@@ -1,6 +1,6 @@
 #include "brlalg.h"
 
-uint64_t BRL_Hash64(
+BRLAPI uint64_t BRL_Hash64(
     const void* key,
     uint64_t len
 ) {

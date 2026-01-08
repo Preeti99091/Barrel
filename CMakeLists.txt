@@ -6,14 +6,28 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Options
-option(BUILD_SAMPLES "Build sample executables" OFF)
-option(BUILD_TOOLS   "Build tool executables (builder/dumper)" OFF)
-option(BUILD_SHARED_LIBS "Build Barrel as shared library" OFF)
+option(BUILD_SAMPLES "Build sample executables" ON)
+option(BUILD_TOOLS   "Build tool executables (builder/dumper)" ON)
+option(BUILD_SHARED_LIBS "Build Barrel as shared library" ON)
 
 # Barrel library
 file(GLOB BARREL_SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
 
 add_library(Barrel ${BARREL_SOURCES})
+
+# Handle library visibility macros
+if(BUILD_SHARED_LIBS)
+    # Define BUILD_LIBTYPE_SHARED
+    target_compile_definitions(Barrel PRIVATE BUILD_LIBTYPE_SHARED)
+    
+    # Define USE_LIBTYPE_SHARED
+    target_compile_definitions(Barrel INTERFACE USE_LIBTYPE_SHARED)
+    
+    # Set default visibility to hidden for non-marked symbols
+    if(NOT MSVC)
+        target_compile_options(Barrel PRIVATE -fvisibility=hidden)
+    endif()
+endif()
 
 target_include_directories(Barrel
         PUBLIC

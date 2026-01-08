@@ -11,6 +11,7 @@
 /// @brief Converts megabytes to bytes. @param mb Size in megabytes.
 #define VFS_MBTOB(mb)  ((mb) * 1024 * 1024)
 
+BRL_EXTERN_C_START
 
 /**
  * @brief Returns a pointer to a file's data within the mapped VFS memory.
@@ -19,7 +20,7 @@
  * @param entry  Pointer to VFSFileEntry
  * @return       Pointer to the file's raw bytes
  */
-void* VFS_GetDataPtr(
+BRLAPI void* VFS_GetDataPtr(
     const VFSContext* ctx,
     const VFSFileEntry* entry
 );
@@ -30,7 +31,7 @@ void* VFS_GetDataPtr(
  * @param entry Pointer to the VFSFileEntry
  * @return File size in bytes.
  */
-uint64_t VFS_GetDataSize(
+BRLAPI uint64_t VFS_GetDataSize(
     const VFSFileEntry* entry
 );
 
@@ -41,7 +42,7 @@ uint64_t VFS_GetDataSize(
  * @param hash  Hash of the filename
  * @return      Pointer to VFSFileEntry or NULL if not found
  */
-VFSFileEntry* VFS_FindByHash(
+BRLAPI VFSFileEntry* VFS_FindByHash(
     const VFSContext* ctx,
     uint64_t          hash
 );
@@ -53,7 +54,7 @@ VFSFileEntry* VFS_FindByHash(
  * @param name  Original filename
  * @return      Pointer to VFSFileEntry or NULL if not found
  */
-VFSFileEntry* VFS_FindByName(
+BRLAPI VFSFileEntry* VFS_FindByName(
     const VFSContext* ctx,
     const char*       name
 );
@@ -68,7 +69,7 @@ VFSFileEntry* VFS_FindByName(
  *
  * @return Pointer to the data or NULL on error.
  */
-uint8_t* VFS_GetChunkedDataPtr(
+BRLAPI uint8_t* VFS_GetChunkedDataPtr(
     VFSChunkedContext*  ctx,
     const VFSFileEntry* entry,
     uint64_t*           outSize,
@@ -82,9 +83,11 @@ uint8_t* VFS_GetChunkedDataPtr(
  * @param chunkSize  Chunk size in bytes.
  * @return           Total number of chunks (0 if chunkSize == 0).
  */
-uint64_t VFS_GetChunksCount(
+BRLAPI uint64_t VFS_GetChunksCount(
     uint64_t fileSize,
     uint64_t chunkSize
 );
+
+BRL_EXTERN_C_END
 
 #endif /* BRL_UTIL */
